@@ -28,7 +28,7 @@ function App() {
       startIdleTracker();
     } else if (loggedInWith === CONSTANTS.FB_LOGIN_TYPE) {
       window.FB.logout(onLogoutSuccess)
-    } else {
+    } else if(loggedInWith === CONSTANTS.G_LOGIN_TYPE) {
       const auth2 = window.gapi.auth2.getAuthInstance();
       auth2.signOut().then(function () {
         console.log('User signed out.');
@@ -64,7 +64,7 @@ function App() {
         <Route exact path='/' element={<Login />} ></Route>
         <Route exact path='/app/*' element={<Main />} ></Route>
       </Routes>
-      <CSWModal title="Do want to continue?" visible={isIdle} handleClose={handleClose} okText="Continue" />
+      { isLoggedIn && <CSWModal title="Do want to continue?" visible={isIdle} handleClose={handleClose} okText="Continue" />}
     </div>
   );
 }

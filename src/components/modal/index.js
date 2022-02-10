@@ -4,11 +4,12 @@ import { Modal } from 'antd';
 const CSWModal = ({ title, visible, handleClose, ...props }) => {
 
     useEffect(() => {
-        setTimeout(() => {
-            console.log(this)
-            handleClose(false)
-        }, 2000)
-    }, [])
+        if(visible){
+            setTimeout(() => {
+                handleClose(false)
+            }, 3000)
+        }
+    }, [visible])
 
     return (
         <Modal title={title} visible={visible} onOk={() => handleClose(true)} onCancel={() => handleClose(false)} {...props} />

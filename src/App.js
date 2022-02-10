@@ -41,8 +41,7 @@ function App() {
     intervalTracker = setInterval(() => {
       console.log(new Date())
       console.log("User Idle ", isLoggedIn)
-      setIsIdle(isLoggedIn)
-      clearInterval(intervalTracker);
+      setIsIdle(true)
     }, CONSTANTS.IDLE_TIME_PERIOD)
   }
 
@@ -64,7 +63,7 @@ function App() {
         <Route exact path='/' element={<Login />} ></Route>
         <Route exact path='/app/*' element={<Main />} ></Route>
       </Routes>
-      { isLoggedIn && <CSWModal title="Do want to continue?" visible={isIdle} handleClose={handleClose} okText="Continue" />}
+      <CSWModal title="Do want to continue?" visible={isIdle} handleClose={handleClose} okText="Continue" />
     </div>
   );
 }
